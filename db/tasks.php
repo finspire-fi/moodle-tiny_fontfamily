@@ -15,17 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Scheduled tasks for the Tiny font family plugin.
  *
  * @package     tiny_fontfamily
- * @copyright   2025 Mikko Haiku <mikko.haiku@iki.fi>
- * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright   2024 Mikko Haiku <mikko.haiku@mediamaisteri.com>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'tiny_fontfamily';
-$plugin->release = '1.1.0';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->requires = 2022112800;
-$plugin->version = 2026071300;
+$tasks = [
+    [
+        'classname' => 'tiny_fontfamily\task\validate_license',
+        'blocking' => 0,
+        'minute' => 0,
+        'hour' => 2,
+        'day' => '*',
+        'dayofweek' => 0,  // Sunday
+        'month' => '*',
+    ],
+];
