@@ -28,4 +28,4 @@ $plugin->component = 'tiny_fontfamily';
 $plugin->release = '1.1.0';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires = 2022112800;
-$plugin->version = 2026071300;
+$plugin->version = 2026071400;

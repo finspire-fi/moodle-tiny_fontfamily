@@ -36,6 +36,11 @@ use editor_tiny\plugin_with_configuration;
 class plugininfo extends plugin implements plugin_with_configuration, plugin_with_buttons, plugin_with_menuitems {
 
     /**
+     * Default font families, used whenever the license hasn't been validated.
+     */
+    private const DEFAULT_FONTS = ['Arial', 'Verdana', 'Tahoma', 'Trebuchet MS'];
+
+    /**
      * Get available buttons.
      *
      * @return array
@@ -59,7 +64,10 @@ class plugininfo extends plugin implements plugin_with_configuration, plugin_wit
 
     /**
      * Get plugin configuration.
-     * Currently not in use.
+     *
+     * Until the license has been validated successfully, the configured font
+     * list is ignored and the plugin behaves as if it was never customised,
+     * rather than exposing a previously saved configuration.
      *
      * @return array
      */
@@ -69,8 +77,32 @@ class plugininfo extends plugin implements plugin_with_configuration, plugin_wit
         array $fpoptions,
         ?\editor_tiny\editor $editor = null
     ): array {
-        $config = [];
-        $config['fonts'] = explode("\r\n", get_config('tiny_fontfamily', 'fonts'));
-        return $config;
+        if (!self::is_license_valid()) {
+            return ['fonts' => self::DEFAULT_FONTS];
+        }
+
+        $rawfonts = get_config('tiny_fontfamily', 'fonts');
+        if ($rawfonts === false || trim($rawfonts) === '') {
+            $rawfonts = implode("\r\n", self::DEFAULT_FONTS);
+        }
+
+        return ['fonts' => preg_split('/\r\n|\r|\n/', $rawfonts)];
+    }
+
+    /**
+     * Whether the plugin's license has been validated successfully.
+     *
+     * @return bool
+     */
+    private static function is_license_valid(): bool {
+        $error = get_config('tiny_fontfamily', 'license_validation_error');
+        $data = get_config('tiny_fontfamily', 'license_validation_data');
+
+        if (!empty($error) || empty($data)) {
+            return false;
+        }
+
+        $decoded = json_decode($data, true);
+        return !empty($decoded['valid']);
     }
 }
