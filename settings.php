@@ -59,10 +59,11 @@ if ($ADMIN->fulltree) {
                 implode("\r\n", $defaults), PARAM_TEXT, 80, 10));
 
     // Licensing settings.
+    $marketplaceurl = 'https://marketplace.moodle.com/plugins/37';
     $settings->add(new admin_setting_heading(
         $plugin . '/licensingheading',
         new lang_string('licensingheading', $plugin),
-        ''
+        html_writer::div(get_string('license_purchase_info', $plugin, $marketplaceurl), 'alert alert-info')
     ));
 
     $licensekeysetting = new admin_setting_configtext(
