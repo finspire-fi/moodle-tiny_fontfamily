@@ -28,7 +28,6 @@ $plugin = "tiny_fontfamily";
 
 $settings = new admin_settingpage('tiny_fontfamily_settings', new lang_string('settings', $plugin));
 if ($ADMIN->fulltree) {
-
     // Lock every setting except the license key itself until the license has been
     // validated successfully. This uses the same mechanism as forcing a setting via
     // config.php, so the field is both rendered disabled and pinned to its current
@@ -52,11 +51,15 @@ if ($ADMIN->fulltree) {
         'Trebuchet MS',
     ];
 
-    $settings->add(
-        new admin_setting_configtextarea($plugin . '/fonts',
-                new lang_string('fonts', $plugin),
-                new lang_string('fonts_desc', $plugin),
-                implode("\r\n", $defaults), PARAM_TEXT, 80, 10));
+    $settings->add(new admin_setting_configtextarea(
+        $plugin . '/fonts',
+        new lang_string('fonts', $plugin),
+        new lang_string('fonts_desc', $plugin),
+        implode("\r\n", $defaults),
+        PARAM_TEXT,
+        80,
+        10
+    ));
 
     // Licensing settings.
     $marketplaceurl = 'https://marketplace.moodle.com/plugins/37';
