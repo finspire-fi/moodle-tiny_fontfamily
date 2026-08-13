@@ -26,21 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['button_fontfamily'] = 'Font family';
-$string['fontfamily:use'] = "Allow the plugin usage";
-$string['fonts'] = "Font families";
-$string['fonts_desc'] = "List of available font families separated by a new line.";
-$string['last_validated'] = 'Last Validated';
-$string['license_expires'] = 'Expires';
-$string['license_key'] = 'License Key';
-$string['license_key_desc'] = 'Enter the license key for this plugin.';
-$string['license_purchase_info'] = 'Without a valid license, this plugin\'s settings are locked to their defaults. Purchasing a license from the <a href="{$a}" target="_blank" rel="noopener noreferrer">Moodle Marketplace</a> unlocks the ability to change the configuration and includes support.';
-$string['license_status'] = 'Status';
-$string['license_valid'] = 'Valid';
-$string['license_validation_info'] = 'License Validation Status';
-$string['licensingheading'] = 'Licensing';
 $string['menuitem_fontfamily'] = 'Font family';
 $string['pluginname'] = 'Font family plugin';
 $string['privacy:metadata'] = 'Font family plugin does not store any personal data';
-$string['settings'] = "Font family settings";
-$string['task_validate_license'] = 'Validate license for Font family';
-$string['validation_error'] = 'Validation Error';
+$string['fonts'] = "Font families";
+$string['settings'] = "Settings";
+$string['fonts_desc'] = "List of available font families separated by a new line.";
+$string['fontfamily:use'] = "Allow the plugin usage";
